@@ -1,11 +1,15 @@
 .title {
     cursor: pointer;
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
 }
 
 img {
     width:100%;
+}
+
+.main {
+    margin-bottom: 8px;
 }
 
 .main :last-child {

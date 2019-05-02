@@ -10,13 +10,13 @@ chrome.tabs.query(tabQuery, function(tabs) {
         var stateIcon = tab.audible ? 'pause': 'play';
         var videoId = tab.url.replace("https://www.youtube.com/watch?v=","");
         var newElement  = 
-        `<div class ="row no-gutters mb-2 p-2 bg-primary">
-        <div class="col-4 px-0">
+        `<div class ="main row no-gutters p-2 bg-primary">
+        <div class="col-3 px-0">
             <div>   
                 <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="" srcset="">
             </div>
         </div >
-        <div class="col-8 p-2">
+        <div class="col-9 p-2">
             <div>
                 <p class="text-light m-0 title" id="title${tab.id}">${tab.title.slice(0,40)+'...'}</p>
                 <button type="button" class="close" id ="close${tab.id}" aria-label="Close">
