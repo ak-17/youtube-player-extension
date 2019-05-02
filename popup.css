@@ -1,0 +1,13 @@
+.title {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+img {
+    width:100%;
+}
+
+.main :last-child {
+    margin-bottom: 0px;
+}
