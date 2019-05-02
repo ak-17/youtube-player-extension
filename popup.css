@@ -1,0 +1,21 @@
+img {
+    width: 80px;
+}
+
+.title {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+i {
+    color: white;
+}
+
+i:hover {
+    color: bisque;
+}

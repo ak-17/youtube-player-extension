@@ -23,6 +23,8 @@ chrome.runtime.onMessage.addListener(function(request,response,senderResponse) {
                 var nextButton = document.getElementsByClassName("ytp-next-button ytp-button")[0];
                 nextButton.click();
                 senderResponse({nextVideo: true, tab:request.tabId});
+            } else {
+                senderResponse({nextVideo: false, tab:request.tabId});
             }
         }
     }

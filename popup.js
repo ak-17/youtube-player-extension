@@ -8,16 +8,28 @@ chrome.tabs.query(tabQuery, function(tabs) {
     var container = $('#content');
     tabs.forEach(function(tab) {
         var stateIcon = tab.audible ? 'pause': 'play';
+        // var title = ${tab.title.slice(0,40) + '...'}
+        var videoId = tab.url.replace("https://www.youtube.com/watch?v=","");
         var newElement  = 
-        `<div class ="mb-2 p-2 bg-primary">
-            <p class="text-light m-0 title" style="cursor:pointer" id="title${tab.id}">${tab.title}</p>
-            <button type="button" class="btn p-0 playControl" id="playControl${tab.id}">
-                <i class="fas fa-${stateIcon}-circle text-light"></i>
-            </button>
-            <button type="button" class="btn p-0 next"  id="next${tab.id}">
-                <i class="fas fa-step-forward text-light"></i>
-            </button>
-        </div>`
+            `<div class="row no-gutters" style:"width:100%">
+                <div>
+                    <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="" srcset="">
+                </div>
+                <div class="col-9 bg-primary" style="width:100%">
+                    <div>
+                        <p class="text-light m-0 ml-2 title" id="title${tab.id}">${tab.title.slice(0,40)+'...'}</p>
+                        <button type="button" class="close" id ="close${tab.id}" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <button type="button" class="btn m-0 ml-2 p-0 playControl" id="playControl${tab.id}">
+                        <i class="fas fa-${stateIcon}-circle icon "></i>
+                    </button>
+                    <button type="button" class="btn p-0 next"  id="next${tab.id}">
+                        <i class="fas fa-step-forward icon"></i>
+                    </button>
+                </div>
+            </div>`;
         container.append($(newElement))
     });
     if(tabs.length == 0) {
@@ -56,9 +68,16 @@ $(function() {
                 $(playControlId).children().removeClass();
                 $(playControlId).children().addClass(pauseIconClass);
             } else {
-                console.log("action cannot be performed");
+                alert("action cannot be performed");
             }
         })
+    })
+})
+
+$(function() {
+    $('.close').click(function() {
+        var tabId = $(this).attr('id').replace("close","");
+        chrome.tabs.remove(parseInt(tabId));
     })
 })
 
