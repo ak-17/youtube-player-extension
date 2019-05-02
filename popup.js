@@ -10,7 +10,7 @@ chrome.tabs.query(tabQuery, function(tabs) {
         var stateIcon = tab.audible ? 'pause': 'play';
         var videoId = tab.url.replace("https://www.youtube.com/watch?v=","");
         var newElement  = 
-        `<div class ="main row no-gutters p-2 bg-primary">
+        `<div class ="main row no-gutters p-2 bg-primary" id = "tabContent${tab.id}">
         <div class="col-3 px-0">
             <div>   
                 <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="" srcset="">
@@ -30,7 +30,6 @@ chrome.tabs.query(tabQuery, function(tabs) {
                 <i class="fas fa-step-forward text-light"></i>
             </button>
         </div>
-        
         </div>`
         container.append($(newElement))
     });
@@ -79,6 +78,8 @@ $(function() {
 $(function() {
     $('.close').click(function() {
         var tabId = $(this).attr('id').replace("close","");
+        var tabContent = document.getElementById("tabContent"+tabId);
+        tabContent.parentNode.removeChild(tabContent);
         chrome.tabs.remove(parseInt(tabId));
     })
 })
