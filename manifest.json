@@ -8,27 +8,21 @@
         "48":"images/48.png",
         "128":"images/128.png"
     },
-    "page_action":{
-        "default_icon":"images/16.png",
-        "default_popup": "popup.html",
-        "default_title":"title of extenions"
+    "browser_action": {
+        "default_popup": "popup.html"
     },
-    "background": {
-        "scripts": ["eventPage.js"],
-        "persistent":false
-    },
-    "content_scripts":[
+    "content_scripts": [
         {
-            "matches": ["https://www.youtube.com/*","https://developer.chrome.com/*"],
-            "js":["jquery-3.4.0.min.js","content.js"],
-            "all_frames": true
+          "matches": [
+            "*://www.youtube.com/*"
+          ],
+          "js": ["content.js"]
         }
-    ],
-    "permissions": [
-        "tabs",
-        "https://www.youtube.com/*",
-        "https://developer.chrome.com/*",
-        "contextMenus"
+      ],
+    "permissions":[
+        "storage",
+        "notifications",
+        "tabs"
     ]
 
 }
