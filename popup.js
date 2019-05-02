@@ -3,6 +3,10 @@ var tabQuery = {url: youtubeUrl};
 var playIconClass = "fas fa-play-circle text-light";
 var pauseIconClass = "fas fa-pause-circle text-light";
 
+// remove notification index from start of title
+function removeNotification(title) {
+    
+}
 
 chrome.tabs.query(tabQuery, function(tabs) {
     var container = $('#content');
