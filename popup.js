@@ -1,7 +1,7 @@
 var youtubeUrl = '*://www.youtube.com/watch?v*';
 var tabQuery = {url: youtubeUrl};
-var playIconClass = "fas fa-play-circle text-light";
-var pauseIconClass = "fas fa-pause-circle text-light";
+var playIconClass = "fas fa-play text-light";
+var pauseIconClass = "fas fa-pause text-light";
 
 // remove notification index from start of title
 function removeNotification(title) {
@@ -9,32 +9,25 @@ function removeNotification(title) {
 }
 
 chrome.tabs.query(tabQuery, function(tabs) {
-    var container = $('#content');
+    var container = $('#holder');
     tabs.forEach(function(tab) {
         var stateIcon = tab.audible ? 'pause': 'play';
         var videoId = tab.url.replace("https://www.youtube.com/watch?v=","");
-        var newElement  = 
-        `<div class ="main row no-gutters p-2 bg-primary" id = "tabContent${tab.id}">
-        <div class="col-3 px-0">
-            <div>   
-                <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="" srcset="">
-            </div>
-        </div >
-        <div class="col-9 p-2">
-            <div>
-                <p class="text-light m-0 title" id="title${tab.id}-${tab.windowId}">${tab.title.slice(0,40)+'...'}</p>
-                <button type="button" class="close" id ="close${tab.id}" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <button type="button" class="btn p-0 playControl" id="playControl${tab.id}">
-                <i class="fas fa-${stateIcon}-circle text-light"></i>
+        var newElement = `
+        <div class="audio green-audio-player" id = "tabContent${tab.id}">
+            <img class="yt-thumbnail" src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="" srcset="">        
+            <button class="btn p-2 border-0 playControl" id="playControl${tab.id}">  
+                <i class="fas fa-${stateIcon} text-light"></i>
             </button>
-            <button type="button" class="btn p-0 next"  id="next${tab.id}">
+            <button class="btn p-2 border-0 next" id="next${tab.id}">  
                 <i class="fas fa-step-forward text-light"></i>
             </button>
+            <p class="title m-0" id="title${tab.id}-${tab.windowId}">${tab.title.slice(0,35)+'...'}</p>
+            <button type="button" class="close" id ="close${tab.id}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        </div>`
+        `
         container.append($(newElement))
     });
     if(tabs.length == 0) {
