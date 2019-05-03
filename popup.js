@@ -22,7 +22,7 @@ chrome.tabs.query(tabQuery, function(tabs) {
         </div >
         <div class="col-9 p-2">
             <div>
-                <p class="text-light m-0 title" id="title${tab.id}">${tab.title.slice(0,40)+'...'}</p>
+                <p class="text-light m-0 title" id="title${tab.id}-${tab.windowId}">${tab.title.slice(0,40)+'...'}</p>
                 <button type="button" class="close" id ="close${tab.id}" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -92,8 +92,9 @@ $(function() {
 $(function() {
     $('.title').click(function() {
         var elementId = '#' + $(this).attr('id');
-        var tabId = $(this).attr('id').replace("title","");
-        chrome.tabs.update(parseInt(tabId),{active:true});
+        var ids = $(this).attr('id').replace("title","").split('-');
+        chrome.windows.update(parseInt(ids[1]),{focused: true});
+        chrome.tabs.update(parseInt(ids[0]),{active:true});
     })
 })
 
