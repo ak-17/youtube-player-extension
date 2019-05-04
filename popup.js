@@ -4,18 +4,25 @@ var playIconClass = "fas fa-play text-light";
 var pauseIconClass = "fas fa-pause text-light";
 
 // remove notification index from start of title
-function removeNotification(title) {
-    
+function getVideoId(url) {
+    var videoId = url.replace("https://www.youtube.com/watch?v=","");
+    return videoId;
+}
+
+function getVideoThumbNailUrl(url) {
+    var baseUrl = "https://img.youtube.com/vi/";
+    var videoId = getVideoId(url);
+    return baseUrl+videoId+"/hqdefault.jpg";
 }
 
 chrome.tabs.query(tabQuery, function(tabs) {
     var container = $('#holder');
     tabs.forEach(function(tab) {
         var stateIcon = tab.audible ? 'pause': 'play';
-        var videoId = tab.url.replace("https://www.youtube.com/watch?v=","");
+        var videoId = getVideoId(tab.url);
         var newElement = `
         <div class="audio green-audio-player" id = "tabContent${tab.id}">
-            <img class="yt-thumbnail" src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="" srcset="">        
+            <img class="yt-thumbnail" src=${getVideoThumbNailUrl(tab.url)} alt="" srcset="">        
             <button class="btn p-2 border-0 playControl" id="playControl${tab.id}">  
                 <i class="fas fa-${stateIcon} text-light"></i>
             </button>
@@ -27,8 +34,11 @@ chrome.tabs.query(tabQuery, function(tabs) {
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        <hr id ="divider${tab.id}">
         `
-        container.append($(newElement))
+        skipAd(tab);
+        container.append($(newElement));
+       
     });
     if(tabs.length == 0) {
         var emptyElement = `
@@ -76,6 +86,8 @@ $(function() {
     $('.close').click(function() {
         var tabId = $(this).attr('id').replace("close","");
         var tabContent = document.getElementById("tabContent"+tabId);
+        var divider = document.getElementById("divider"+tabId);
+        divider.parentNode.removeChild(divider);
         tabContent.parentNode.removeChild(tabContent);
         chrome.tabs.remove(parseInt(tabId));
     })
@@ -94,9 +106,36 @@ $(function() {
 chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab) {
     var regexUrl = /www\.youtube\.com/;
     if (regexUrl.test(tab.url) && changeInfo.title) {
-        document.getElementById("title" + tabId).textContent = changeInfo.title;
+        document.getElementById("title" + tabId+"-"+tab.windowId).textContent = changeInfo.title.slice(0,35)+'...'
+        document.getElementsByTagName("img")[0].srcset = getVideoThumbNailUrl(tab.url);
+        skipAd(tab);
     }
 })
 
+function skipAd(tab) {
+    chrome.tabs.sendMessage(parseInt(tab.id), {message:'skip_ad',tab:tab.tabId}, function(response) {
+        console.log(response);
+    });
+}
 
-
+chrome.commands.onCommand.addListener(function(command) {
+    
+    if(command.toString() === "nextAction") {
+        var nextButtons = document.getElementsByClassName('next');
+        if(nextButtons.length > 1) {
+            alert("more than one tab present! shortcuts work only when one tab is present")
+        } else {
+            console.log("next button clicking");
+            nextButtons[0].click();
+        }
+    }
+    if(command.toString() === "toggleVideoAction") {
+        var playControlButtons = document.getElementsByClassName('playControl');
+        if(playControlButtons.length > 1) {
+            alert("more than one tab present! shortcuts work only when one tab is present")
+        } else {
+            console.log("next button clicking");
+            playControlButtons[0].click();
+        }
+    }
+});
