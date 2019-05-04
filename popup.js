@@ -36,7 +36,6 @@ chrome.tabs.query(tabQuery, function(tabs) {
         </div>
         <hr id ="divider${tab.id}">
         `
-        skipAd(tab);
         container.append($(newElement));
        
     });
@@ -104,17 +103,16 @@ $(function() {
 })
 
 chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab) {
-    // /www\.youtube\.com\/watch/
-    var regexUrl = /www\.youtube\.com/;
+    console.log("tabupdated");
+    var regexUrl = /www\.youtube\.com\/watch/;
     if (regexUrl.test(tab.url) && changeInfo.title) {
         document.getElementById("title" + tabId+"-"+tab.windowId).textContent = changeInfo.title.slice(0,35)+'...'
         document.getElementsByTagName("img")[0].srcset = getVideoThumbNailUrl(tab.url);
-        skipAd(tab);
     }
 })
 
 function skipAd(tab) {
-    chrome.tabs.sendMessage(parseInt(tab.id), {message:'skip_ad',tab:tab.tabId}, function(response) {
+    chrome.tabs.sendMessage(parseInt(tab.id), {message:'skip_ad',script:"popup.js",tab:tab.tabId}, function(response) {
         console.log(response);
     });
 }

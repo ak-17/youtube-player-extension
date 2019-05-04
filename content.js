@@ -1,5 +1,4 @@
 chrome.runtime.onMessage.addListener(function(request,response,senderResponse) {
-    
     if(request.message === "skip_ad") {
         console.log(request);
         var btnSlot = document.getElementsByClassName("ytp-ad-skip-button-slot");
@@ -43,5 +42,3 @@ chrome.runtime.onMessage.addListener(function(request,response,senderResponse) {
         }
     }
 })
-
-onload
