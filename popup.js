@@ -104,6 +104,7 @@ $(function() {
 })
 
 chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab) {
+    // /www\.youtube\.com\/watch/
     var regexUrl = /www\.youtube\.com/;
     if (regexUrl.test(tab.url) && changeInfo.title) {
         document.getElementById("title" + tabId+"-"+tab.windowId).textContent = changeInfo.title.slice(0,35)+'...'
