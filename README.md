@@ -1,5 +1,5 @@
 # youtube-player-extension #
-- - - -
+
 
 ![alt text](https://raw.githubusercontent.com/ak-17/youtube-player-extension/master/images/extension-use.PNG)
 
