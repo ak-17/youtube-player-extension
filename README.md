@@ -1,5 +1,7 @@
-#youtube-player-extension#
+# youtube-player-extension #
+- - - -
 
 ![alt text](https://raw.githubusercontent.com/ak-17/youtube-player-extension/master/images/extension-use.PNG)
 
-This is a chrome extension which will allow you to play or pause youtube videos running across all tabs in all windows. Press the row containing title and it toggles the state of tab playing youtube video. You need to reload tabs once after installing the extension.
+This Chrome extension allows to toggle youtube videos that are playing across tabs and windows from the extension.
+It can skip the ads that are skippable without any time wait.
