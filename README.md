@@ -1,5 +1,6 @@
 # youtube-player-extension #
 
+Built with ❤︎ and :coffee:by  [Akshay](https://github.com/ak-17)
 
 ![alt text](https://raw.githubusercontent.com/ak-17/youtube-player-extension/master/images/extension-use.PNG)
 
