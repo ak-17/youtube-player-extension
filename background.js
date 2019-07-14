@@ -4,7 +4,7 @@ chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab) {
         chrome.tabs.sendMessage(parseInt(tab.id), {message:"skip_ad",script:"background.js",tab:tab.tabId});
     }
 })
-
+  
 var contextMenuItem = {
     "id": "videoLink",
     "title": "Play Next",
