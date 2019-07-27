@@ -13,6 +13,6 @@ It can skip the ads that are skippable without any time wait.
 - Turn on developer mode
 - Click on Load Unpacked
 - select the downloaded folder
-- You are ready to use the excention
+- You are ready to use the extension
 
 Cheers!!
