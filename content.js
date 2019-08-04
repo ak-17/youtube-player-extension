@@ -5,11 +5,13 @@ chrome.runtime.onMessage.addListener(function(request,response,senderResponse) {
         var skipBtnContainer = document.getElementsByClassName("ytp-ad-skip-button-container");
         var skipButton = document.getElementsByClassName("ytp-ad-skip-button ytp-button")[0];
         if(btnSlot[0] && skipBtnContainer[0]) {
+            // console.log("skip button present");
             btnSlot[0].style.display = "";
             skipBtnContainer[0].style.display = "";
             skipButton.click();
             senderResponse({adSkip:true, tab:request.tab});
         } else {
+            // console.log("skip button not present");
             senderResponse({adSkip:false,tab:request.tab});
         }
     }

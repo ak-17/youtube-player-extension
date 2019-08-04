@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
     "name": "YouTubePlayer",
-    "version": "0.0.1",
-    "description": "helps to change youtube videos from extension",
+    "version": "1.0.0",
+    "description": "Helps to change youtube videos from extension",
     "icons": {
         "16": "images/16.png",
         "48":"images/48.png",
@@ -25,23 +25,6 @@
         }
       ],
     "permissions":[
-        "tabs",
-        "contextMenus"
-    ],
-    "commands": {
-      "nextAction": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+Z",
-          "mac": "Command+Shift+Z"
-        },
-        "description": "Plays next video if theres only one video playing"
-      },
-      "toggleVideoAction": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+X",
-          "mac": "Command+Shift+X"
-        },
-        "description": "Toggles video if theres only one video playing"
-      }
-    }
+        "tabs"
+    ]
 }
