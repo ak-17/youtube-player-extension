@@ -116,25 +116,3 @@ function skipAd(tab) {
         console.log(response);
     });
 }
-
-chrome.commands.onCommand.addListener(function(command) {
-    
-    if(command.toString() === "nextAction") {
-        var nextButtons = document.getElementsByClassName('next');
-        if(nextButtons.length > 1) {
-            alert("more than one tab present! shortcuts work only when one tab is present")
-        } else {
-            console.log("next button clicking");
-            nextButtons[0].click();
-        }
-    }
-    if(command.toString() === "toggleVideoAction") {
-        var playControlButtons = document.getElementsByClassName('playControl');
-        if(playControlButtons.length > 1) {
-            alert("more than one tab present! shortcuts work only when one tab is present")
-        } else {
-            console.log("next button clicking");
-            playControlButtons[0].click();
-        }
-    }
-});
