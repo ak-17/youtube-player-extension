@@ -2,7 +2,7 @@
 
 Built with ❤︎ and :coffee:by  [Akshay](https://github.com/ak-17)
 
-![alt text](https://raw.githubusercontent.com/ak-17/youtube-player-extension/master/images/extension-use.PNG)
+![alt text](https://raw.githubusercontent.com/ak-17/QRcodeGenerator/blob/master/images/QRScanner.png)
 
 This Chrome extension allows to toggle youtube videos that are playing across tabs and windows from the extension.
 It can skip the ads that are skippable without any time wait.
