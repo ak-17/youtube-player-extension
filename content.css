@@ -1,0 +1,16 @@
+#widget {
+    width: 80px;
+    height: 80px;
+    background: salmon;
+    border-radius: 50px;
+    position: absolute;
+    left: 100px;
+    top: 400px;
+    opacity: 0.8;
+    z-index: 990;
+    cursor: pointer;
+}
+
+#widget:hover {
+    opacity: 1;
+}

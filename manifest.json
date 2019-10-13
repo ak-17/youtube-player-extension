@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "YouTubePlayer",
+    "name": "test Yoututeb",
     "version": "0.0.1",
     "description": "helps to change youtube videos from extension",
     "icons": {
@@ -18,13 +18,16 @@
     "content_scripts": [
         {
           "matches": [
-            "*://www.youtube.com/*"
+            "*://www.youtube.com/*",
+            "https://github.com/ak-17/*"
           ],
-          "js": ["content.js"],
+          "js": ["jquery-3.4.0.min.js","content.js"],
+          "css":["content.css"],
           "run_at":"document_start"
         }
       ],
     "permissions":[
-        "tabs"
+        "tabs",
+        "https://github.com/ak-17/*"
     ]
 }
